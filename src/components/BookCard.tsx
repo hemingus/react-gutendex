@@ -8,7 +8,7 @@ export default function BookCard({ book }:BookCardProps) {
     return (
         <div>
             <h2>{book.title}</h2>
-            <img src={book.imageURL} alt={`${book.title} cover`} />
+            <img src={book.formats["image/jpeg"]} alt={`${book.title} cover`} />
         </div>
     )
 }
