@@ -14,4 +14,10 @@ const fetchBooksByTopic = async ( topic: string ) => {
     return res.data.results;
 }
 
-export { fetchBooks, fetchBooksByTopic }
+const fetchBookById = async ( id: string ) => {
+    const res = await axios.get(`${BASE_URL}/books/${id}`)
+    console.log(res.data);
+    return res.data;
+}
+
+export { fetchBooks, fetchBooksByTopic, fetchBookById }
