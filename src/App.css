@@ -4,3 +4,25 @@
   padding: 2rem;
   text-align: center;
 }
+
+.bookCard {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(20, 20, 50);
+  color: gold;
+  padding: 2rem;
+  border: 5px groove grey;
+}
+
+.bookCard img {
+  width: clamp(200px, 20vw, 300px);
+}
+
+.bookList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
