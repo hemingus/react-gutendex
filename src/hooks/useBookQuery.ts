@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchBooks, fetchBooksByTopic } from "../api/axiosGutendex";
+import { fetchBookById, fetchBooks, fetchBooksByTopic } from "../api/axiosGutendex";
 
 const useBooks = () => {
     return useQuery({
@@ -13,6 +13,13 @@ const useBooksByTopic = (topic: string) => {
         queryKey: ["booksByTopic", topic],
         queryFn: () => fetchBooksByTopic(topic)
     });
-} 
+}
 
-export { useBooks, useBooksByTopic };
+const useBookById = (id: string) => {
+    return useQuery({
+        queryKey: ["bookById", id],
+        queryFn: () => fetchBookById(id)
+    });
+}
+
+export { useBooks, useBooksByTopic, useBookById };
