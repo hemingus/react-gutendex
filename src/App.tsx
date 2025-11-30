@@ -1,10 +1,11 @@
 import './App.css'
+import NavBar from './components/NavBar'
 import Home from './pages/Home'
 
 function App() {
   return (
     <>
-      <h1>Book App</h1>
+      <NavBar />
       <Home />
     </>
   )
