@@ -1,13 +1,14 @@
 import { Outlet } from 'react-router-dom'
 import './App.css'
 import NavBar from './components/NavBar'
+import { FavoritesProvider } from './context/FavoritesContext'
 
 function App() {
   return (
-    <>
-      <NavBar />
-      <Outlet />
-    </>
+      <FavoritesProvider> 
+          <NavBar />
+          <Outlet />
+      </FavoritesProvider>
   )
 }
 
