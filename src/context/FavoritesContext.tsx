@@ -1,16 +1,40 @@
 import { createContext, useContext, type ReactNode } from "react";
-import { useFavoriteBooks } from "../hooks/useFavoriteBooks";
+import type { Book } from "../types/book";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 interface FavoritesProviderProps {
     children: ReactNode;
 }
 
-type FavoriteBooksContextType = ReturnType<typeof useFavoriteBooks>;
+interface FavoritesContextType {
+    favorites: Book[];
+    addFavorite: (book: Book) => void;
+    removeFavorite: (id: number) => void;
+    isFavorite: (id: number) => boolean;
+}
 
-const FavoritesContext = createContext<FavoriteBooksContextType | null>(null);
+const FavoritesContext = createContext<FavoritesContextType | null>(null);
 
 export function FavoritesProvider({ children }:FavoritesProviderProps) {
-    const value = useFavoriteBooks();
+    const [favorites, setFavorites] = useLocalStorage<Book[]>({
+        key: "favorites",
+        defaultValue: []
+    })
+
+    const addFavorite = (book: Book) => {
+        if (!isFavorite(book.id)) setFavorites(prev => [...prev, book]);
+    }
+
+    const removeFavorite = (id: number) => {
+        setFavorites(prev => prev.filter(b => b.id !== id));
+    }
+
+    const isFavorite = (id: number) => {
+        return favorites.some(b => b.id === id);
+    }
+
+    const value: FavoritesContextType = { favorites, addFavorite, removeFavorite, isFavorite };
+
     return (
         <FavoritesContext.Provider value={value}>
             {children}
