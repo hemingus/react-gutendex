@@ -5,9 +5,11 @@ export default function FavoritesPage() {
     const { favorites } = useFavorites();
 
     return (
-        <div>
-            <h1>Favorites</h1>
+        <main className="bg-slate-900 flex flex-col justify-center items-center">
+            <header className="w-full text-amber-500 font-semibold text-center text-4xl p-8">
+                <h1>Favorites</h1>
+            </header>
             <BookList booklist={favorites} />
-        </div>
+        </main>
     )
 }
