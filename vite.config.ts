@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: process.env.NODE_ENV === "production" ? "/my-repo-name/" : "/",
+  base: process.env.NODE_ENV === "production" ? "/react-gutendex/" : "/",
 })
