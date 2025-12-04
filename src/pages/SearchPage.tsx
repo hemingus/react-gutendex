@@ -35,6 +35,10 @@ export default function SearchPage() {
         setAppliedFilters(filters);
         setFilters(prev => ({ ...prev, topic: filters.topic }));
         const topicSegment = filters.topic ? `/search/${filters.topic}` : "/search";
+        setSearchParams({
+        ...(filters.search ? { search: filters.search } : {}),
+        ...(filters.page ? { page: filters.page.toString() } : {}),
+        });
         const params = new URLSearchParams();
         if (filters.search) params.set("search", filters.search);
         if (filters.page) params.set("page", filters.page.toString());
