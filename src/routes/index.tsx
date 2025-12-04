@@ -2,9 +2,8 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import Home from "../pages/Home";
 import BookDetails from "../components/BookDetails";
-import CategoryPage from "../pages/CategoryPage";
-import Categories from "../components/Categories";
 import FavoritesPage from "../pages/FavoritesPage";
+import SearchPage from "../pages/SearchPage";
 
 const router = createBrowserRouter([
     {
@@ -14,8 +13,8 @@ const router = createBrowserRouter([
         children: [
             {index: true, element: <Home />},
             {path: "book/:id", element: <BookDetails />},
-            {path: "categories", element: <CategoryPage />},
-            {path: "categories/:topic", element: <CategoryPage />},
+            {path: "search", element: <SearchPage />},
+            {path: "search/:topic", element: <SearchPage />},
             {path: "favorites", element: <FavoritesPage />},
             {path: "*", element: <h1>404 not found</h1>}
         ]
