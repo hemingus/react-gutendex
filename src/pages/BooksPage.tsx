@@ -23,6 +23,7 @@ export default function BooksPage() {
 
   /**
    * REACT QUERY DATA FETCHING
+   * https://www.youtube.com/shorts/E0K9NdagF1s
    * Automatically refetches any time "filters" changes.
    */
   const { data, isLoading, isError } = useBooksQuery(filters);
