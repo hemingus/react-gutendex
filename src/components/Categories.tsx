@@ -7,7 +7,7 @@ export default function Categories() {
             {categories.map(category => {
                 return <Link  key={category} to={`/search/${category}`}>
                             <li 
-                            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.5)), url('./assets/${category}.png')`}}
+                            style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.5)), url('${import.meta.env.BASE_URL}assets/${category}.png')`}}
                             className={`border-2 border-[rgba(50,50,50,0.3)] text-gray-200 relative 
                             flex justify-center items-center w-[250px] h-[140px] bg-cover bg-center 
                             p-4 cursor-pointer rounded-xl  transition-all duration-200
