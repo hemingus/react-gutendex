@@ -1,17 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import { fetchBookById, fetchBooks, fetchBooksByTopic } from "../api/axiosGutendex";
+import { fetchBookById, fetchBooks } from "../api/axiosGutendex";
+import type { BookFilters } from "../types/book";
 
-const useBooks = () => {
+const useBooks = (filters: BookFilters & {page: number}) => {
     return useQuery({
-        queryKey: ["books"],
-        queryFn: fetchBooks
-    });
-}
-
-const useBooksByTopic = (topic: string) => {
-    return useQuery({
-        queryKey: ["booksByTopic", topic],
-        queryFn: () => fetchBooksByTopic(topic)
+        queryKey: ["books", filters],
+        queryFn: () => fetchBooks(filters),
     });
 }
 
@@ -22,4 +16,4 @@ const useBookById = (id: string) => {
     });
 }
 
-export { useBooks, useBooksByTopic, useBookById };
+export { useBooks, useBookById };
