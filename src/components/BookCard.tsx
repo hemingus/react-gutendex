@@ -13,7 +13,7 @@ export default function BookCard({ book, isFavorite, addFavorite, removeFavorite
     return (
         <div className={`${isFavorite(book.id) ? "bg-emerald-900" : "bg-slate-800"} flex flex-col justify-between items-center gap-4 text-white text-center
         grid-1 p-8 rounded-xl border border-slate-700`}>
-            <h2 className="text-xl">{`${book.title} ${isFavorite(book.id) && " 🌟"}`}</h2>
+            <h2 className="text-xl">{`${book.title} ${isFavorite(book.id) ? " 🌟" : ""}`}</h2>
             <img className="w-[80%]" src={book.formats["image/jpeg"]} alt={`${book.title} cover`} />
             <p>{`Topic: ${book.subjects[0]}`}</p>
             <p>{`Downloads: ${book.download_count}`}</p>
