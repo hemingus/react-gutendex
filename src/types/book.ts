@@ -30,3 +30,9 @@ export interface Person {
 export interface Formats {
     [mimeType: string]: string;
 }
+
+export interface BookFilters {
+    search?: string;
+    topic?: string;
+    page?: number;
+}
