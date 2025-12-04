@@ -28,7 +28,7 @@ module.exports = {
       },
       animation: {
         'spin-slow': 'spin360 10s linear infinite',
-        'blink-slow': 'blink 2s linear infinite',
+        'blink-slow': 'blink 2s linear var(--delay, 0s) infinite',
         'spin-blink': 'spin360 10s linear infinite, blink 3s linear infinite',
         'bounce-slow': 'bounceY 1s ease-in-out infinite',
         'spin3d': "spin3d 2.5s linear infinite"
