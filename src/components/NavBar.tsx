@@ -4,7 +4,7 @@ export default function NavBar() {
     return (
         <nav className="navBar">
             <Link to="/">Home</Link>
-            <Link to="/categories">Categories</Link>
+            <Link to="/search">Search</Link>
             <Link to="/favorites">Favorites</Link>
         </nav>
     )
