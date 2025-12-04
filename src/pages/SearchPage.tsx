@@ -31,10 +31,6 @@ export default function SearchPage() {
 
     }, [pathTopic])
 
-    const handleFilterChange = (updated: Partial<typeof filters>) => {
-        setFilters(prev => ({ ...prev, ...updated, page: 1 }))
-    }
-
     const handleApplyFilters = () => {
         setAppliedFilters(filters);
         setFilters(prev => ({ ...prev, topic: filters.topic }));
