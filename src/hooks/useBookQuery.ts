@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import { fetchBookById, fetchBooks } from "../api/axiosGutendex";
-import type { BookFilters } from "../types/book";
+import type { BookQueryParams } from "../types/book";
 
-const useBooks = (filters: BookFilters & {page: number}) => {
+const useBooks = (params: BookQueryParams) => {
     return useQuery({
-        queryKey: ["books", filters],
-        queryFn: () => fetchBooks(filters),
+        queryKey: ["books", params],
+        queryFn: () => fetchBooks(params),
     });
 }
 
