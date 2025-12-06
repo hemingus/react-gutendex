@@ -5,7 +5,7 @@ export default function Categories() {
     return (
         <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 justify-center gap-4 text-white">
             {categories.map(category => {
-                return <Link  key={category} to={`/search/${category}`}>
+                return <Link  key={category} to={`/search?topic=${category}&page=1`}>
                             <li 
                             style={{ backgroundImage: `linear-gradient(rgba(0,0,0,0.9),rgba(0,0,0,0.5)), url('${import.meta.env.BASE_URL}assets/${category}.png')`}}
                             className={`border-2 border-[rgba(50,50,50,0.3)] text-gray-200 relative 
