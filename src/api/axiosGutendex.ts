@@ -1,18 +1,14 @@
 import axios from "axios";
-import type { BookFilters } from "../types/book";
+import type { BookQueryParams } from "../types/book";
 
 const BASE_URL = "https://gutendex.com";
 
-const fetchBooks = async (filters: BookFilters & {page: number} = {page: 1}) => {
+const fetchBooks = async ( params: BookQueryParams ) => {
     const res = await axios.get(`${BASE_URL}/books`, {
-        params: {
-            search: filters.search,
-            topic: filters.topic,
-            page: filters.page,
-        },
+        params: params
     });
-    console.log(res.data.results);
-    return res.data.results; 
+    console.log(res.data);
+    return res.data;
 }
 
 const fetchBookById = async ( id: string ) => {
