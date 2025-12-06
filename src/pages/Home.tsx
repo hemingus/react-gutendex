@@ -5,7 +5,7 @@ export default function Home() {
 
     
     return (
-        <main className="bg-slate-900 flex flex-col items-center h-screen">
+        <main className="bg-slate-900 flex flex-col items-center min-h-screen pb-8">
             <header className="w-full text-amber-500 font-semibold text-center text-4xl p-8">
                 <h1>Home</h1>
             </header>
