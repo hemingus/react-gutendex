@@ -1,59 +1,53 @@
-import { useEffect, useState } from "react";
 import BookList from "../components/BookList";
 import FilterSection from "../components/FilterSection";
 import Loading from "../components/ui/Loading";
 import { useBooks } from "../hooks/useBookQuery";
-import { useParams, useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import type { BookFilters } from "../types/book";
+import Pagination from "../components/Pagination";
 
 
 export default function SearchPage() {
-    const { topic: pathTopic } = useParams();
-    const [searchParams, setSearchParams] = useSearchParams();
+    const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const page = Number(searchParams.get("page")) || 1;
+    const filters = { 
+        topic: searchParams.get("topic") || "",
+        search: searchParams.get("search") || ""
+    };
 
-    const [filters, setFilters] = useState<BookFilters & {page: number}>({
-        search: searchParams.get("search") || "",
-        topic: pathTopic ?? "",
-        page: Number(searchParams.get("page")) || 1,
-    });
+    const { data, isFetching } = useBooks({...filters, page});
 
-    const [appliedFilters, setAppliedFilters] = useState(filters);
-
-    const { data, isFetching, refetch } = useBooks(appliedFilters);
-
-    useEffect(() => {
-        if (pathTopic) {
-            setFilters(prev => ({
-            ...prev, topic: pathTopic,
-            }))
-        }
-
-    }, [pathTopic])
-
-    const handleApplyFilters = () => {
-        setAppliedFilters(filters);
-        setFilters(prev => ({ ...prev, topic: filters.topic }));
-        const topicSegment = filters.topic ? `/search/${filters.topic}` : "/search";
-        setSearchParams({
-        ...(filters.search ? { search: filters.search } : {}),
-        ...(filters.page ? { page: filters.page.toString() } : {}),
-        });
+    const handleApplyFilters = (newFilters: BookFilters) => {
         const params = new URLSearchParams();
-        if (filters.search) params.set("search", filters.search);
-        if (filters.page) params.set("page", filters.page.toString());
-        navigate(`${topicSegment}?${params.toString()}`);
-        refetch();
+        if (newFilters.search) params.set("search", newFilters.search);
+        if (newFilters.topic) params.set("topic", newFilters.topic);
+        params.set("page", "1");
+        navigate(`/search?${params.toString()}`);
     }
 
+    const handlePageChange = (newPage: number) => {
+        const params = new URLSearchParams(searchParams);
+        params.set("page", newPage.toString());
+        navigate(`/search?${params.toString()}`);
+    };
+
     return (
-        <main className="bg-slate-900 flex flex-col items-center min-h-screen">
+        <main className="bg-slate-900 flex flex-col items-center min-h-screen pb-8">
             <header className="w-full text-amber-500 font-semibold text-center text-4xl p-8">
                 <h1>Search</h1>
             </header>
-            <FilterSection filters={filters} setFilters={setFilters} onApply={handleApplyFilters}/>
+            <FilterSection filters={filters} onApply={handleApplyFilters}/>
             <h2 className="text-white">{`Category: ${filters.topic} ~ Search: ${filters.search}`}</h2>
-            {isFetching ? <Loading /> : <BookList booklist={data}/>}
+            {isFetching ? <Loading /> : <BookList booklist={data.results}/>}
+            {!isFetching && data && (
+                <Pagination
+                    page={page}
+                    hasNext={!!data.next}
+                    hasPrev={!!data.previous}
+                    onPageChange={handlePageChange}
+                />)
+            }
         </main>
     );
 }
