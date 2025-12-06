@@ -16,7 +16,7 @@ export default function BookDetails() {
             <div className="grid lg:grid-cols-2  items-center justify-center max-w-[1200px]">
                 
                 
-                <img className="w-[200px]" src={data.formats["image/jpeg"]} alt={`${data.title} cover`} />
+                <img className="w-1/2" src={data.formats["image/jpeg"]} alt={`${data.title} cover`} />
                 <div className="col-span-3 lg:col-span-1">
                     
                     <label>Authors:</label>
