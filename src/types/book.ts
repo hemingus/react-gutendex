@@ -34,5 +34,8 @@ export interface Formats {
 export interface BookFilters {
     search?: string;
     topic?: string;
-    page?: number;
+}
+
+export interface BookQueryParams extends BookFilters {
+    page: number;
 }
