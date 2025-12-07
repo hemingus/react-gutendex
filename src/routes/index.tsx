@@ -4,18 +4,19 @@ import Home from "../pages/Home";
 import BookDetails from "../components/BookDetails";
 import FavoritesPage from "../pages/FavoritesPage";
 import SearchPage from "../pages/SearchPage";
+import ErrorScreen from "../components/ui/ErrorScreen";
 
 const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
-        errorElement: <h1>an error occurred</h1>,
+        errorElement: <ErrorScreen message="An error occurred..." />,
         children: [
             {index: true, element: <Home />},
             {path: "book/:id", element: <BookDetails />},
             {path: "search", element: <SearchPage />},
             {path: "favorites", element: <FavoritesPage />},
-            {path: "*", element: <h1>404 not found</h1>}
+            {path: "*", element: <ErrorScreen message="Page not found..." />,}
         ]
     }
 ])
