@@ -7,11 +7,11 @@ interface PaginationProps {
 
 export default function Pagination({ page, hasNext, hasPrev, onPageChange }: PaginationProps) {
     return (
-        <div className="flex items-center gap-6 mt-8 text-white">
+        <div className="flex items-center gap-6 mt-8 p-2 text-white">
             <button
                 onClick={() => onPageChange(page - 1)}
                 disabled={!hasPrev || page <= 1}
-                className="px-4 py-2 bg-blue-800 rounded disabled:opacity-0 cursor-pointer"
+                className="px-4 py-2 bg-blue-800 rounded cursor-pointer disabled:opacity-20 disabled:cursor-auto"
             >
                 Previous
             </button>
@@ -21,7 +21,7 @@ export default function Pagination({ page, hasNext, hasPrev, onPageChange }: Pag
             <button
                 onClick={() => onPageChange(page + 1)}
                 disabled={!hasNext}
-                className="px-4 py-2 bg-blue-800 rounded disabled:opacity-0 cursor-pointer"
+                className="px-4 py-2 bg-blue-800 rounded cursor-pointer disabled:opacity-20 disabled:cursor-auto"
             >
                 Next
             </button>
