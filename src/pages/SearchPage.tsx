@@ -32,15 +32,31 @@ export default function SearchPage() {
         navigate(`/search?${params.toString()}`);
     };
 
+    const calculatePages = (count: number) => {
+        const pages = Math.ceil(count / 32);
+        return pages;
+    }
+
     return (
         <main className="bg-slate-900 flex flex-col items-center min-h-screen pb-8">
             <header className="w-full text-amber-500 font-semibold text-center text-4xl p-8">
                 <h1>Search</h1>
             </header>
             <FilterSection filters={filters} onApply={handleApplyFilters}/>
-            <h2 className="text-white">{`Category: ${filters.topic} ~ Search: ${filters.search}`}</h2>
+            {!isFetching && data && (
+            <>
+            <h2 className="text-white p-2">{`${data.count} books ~ Page ${page} of ${calculatePages(Number(data.count))}`}</h2>
+                <Pagination
+                    page={page}
+                    hasNext={!!data.next}
+                    hasPrev={!!data.previous}
+                    onPageChange={handlePageChange}
+                />
+            </>)
+            }
             {isFetching ? <Loading /> : <BookList booklist={data.results}/>}
             {!isFetching && data && (
+
                 <Pagination
                     page={page}
                     hasNext={!!data.next}
