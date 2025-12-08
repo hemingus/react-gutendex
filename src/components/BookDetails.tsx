@@ -63,7 +63,7 @@ export default function BookDetails() {
 
                 </div>
 
-                <div className="mt-8 col-span-2 flex flex-col gap-4 justify-end p-4">
+                <div className="max-w-[800px] mx-auto mt-8 col-span-2 flex flex-col gap-4 justify-end p-4">
                     <h2 className="text-2xl text-amber-200 mb-2">Summary</h2>
                     {data.summaries.map((s: string, index: number) => {
                         return <p key={index}>{s}</p>
