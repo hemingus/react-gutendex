@@ -43,16 +43,8 @@ export default function SearchPage() {
                 <h1>Search</h1>
             </header>
             <FilterSection filters={filters} onApply={handleApplyFilters}/>
-            {!isFetching && data && (
-            <>
+            {!isFetching && data &&   
             <h2 className="text-white p-2">{`${data.count} books ~ Page ${page} of ${calculatePages(Number(data.count))}`}</h2>
-                <Pagination
-                    page={page}
-                    hasNext={!!data.next}
-                    hasPrev={!!data.previous}
-                    onPageChange={handlePageChange}
-                />
-            </>)
             }
             {isFetching ? <Loading /> : <BookList booklist={data.results}/>}
             {!isFetching && data && (
