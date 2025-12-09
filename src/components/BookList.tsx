@@ -11,7 +11,7 @@ export default function BookList( { booklist = [] }:BookListProps) {
 
     return (
         <div className="w-[90%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 justify-center items-stretch mb-8">
-            {booklist.map((book) => {
+            {booklist.map((book:Book) => {
                 return <BookCard 
                     key={book.id} book={book} 
                     isFavorite={isFavorite} 
