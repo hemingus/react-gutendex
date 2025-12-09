@@ -5,8 +5,8 @@ export default function Home() {
 
     
     return (
-        <main className="bg-linear-to-r from-black via-slate-900 to-black flex flex-col items-center  gap-8 min-h-screen pb-8 text-white p-4">
-            <header className="w-full text-amber-500 font-semibold text-center text-4xl p-8">
+        <main className="bg-linear-to-r from-black from-[-100%] via-slate-900 to-black to-[200%] flex flex-col items-center  gap-8 min-h-screen pb-8 text-white p-4">
+            <header className="w-full text-blue-500 font-semibold text-center text-4xl p-8">
                 <h1>Gutendex</h1>
             </header>
             <p className="text-xl text-center">Discover thousands of classic, open-access e-books powered by Gutendex. <br/>
