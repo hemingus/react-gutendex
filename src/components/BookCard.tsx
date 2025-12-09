@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import type { Book } from "../types/book"
+import type { Book, Person } from "../types/book"
 
 interface BookCardProps {
     book: Book
@@ -9,13 +9,17 @@ interface BookCardProps {
 }
 
 export default function BookCard({ book, isFavorite, addFavorite, removeFavorite }:BookCardProps) {
-   
     return (
         <div className={`${isFavorite(book.id) ? "bg-emerald-900" : "bg-slate-800"} flex flex-col justify-between items-center gap-4 text-white text-center
         grid-1 p-8 rounded-xl border border-slate-700`}>
             <h2 className="text-xl">{`${book.title} ${isFavorite(book.id) ? " 🌟" : ""}`}</h2>
             <img className="w-[80%]" src={book.formats["image/jpeg"]} alt={`${book.title} cover`} />
-            <p>{`Topic: ${book.subjects[0]}`}</p>
+            <ul>
+                {book.authors.map((author: Person) => {
+                    return <li className="w-fit text-xl rounded-lg">{author.name}</li>
+                })}
+            </ul>
+            {/* <p>{`By ${book.authors[0]?.name || "Unknown Author"}`}</p> */}
             <p>{`Downloads: ${book.download_count}`}</p>
             <Link to={`/book/${book.id}`}><button className="cursor-pointer rounded-lg bg-blue-950 p-2 hover:bg-blue-900 border border-sky-800">Details</button></Link>
             {isFavorite(book.id) ? 
