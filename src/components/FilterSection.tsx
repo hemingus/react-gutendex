@@ -16,7 +16,8 @@ export default function FilterSection({ filters, onApply }: FilterSectionProps) 
     }
 
     return (
-        <section className="flex flex-wrap gap-2 p-4 text-white">
+        <section className="flex flex-wrap items-center justify-center gap-2 p-4 text-white">
+            <img className="h-12" src="/assets/magnifying-glass.png" alt="Magnifying glass icon" />
             <input
                 className="bg-slate-600 text-2xl p-1 rounded-md"
                 type="text"
@@ -38,7 +39,7 @@ export default function FilterSection({ filters, onApply }: FilterSectionProps) 
 
                         <button
             onClick={handleApply}
-            className="text-amber-200 bg-slate-600 rounded-lg p-2 cursor-pointer">Apply filter</button>
+            className="text-2xl bg-indigo-950 rounded-lg py-1 px-2 cursor-pointer border-4 border-[rgba(0,50,100,0.5)] hover:bg-indigo-900">Apply filter</button>
         </section>
     );
 }
