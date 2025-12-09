@@ -11,7 +11,7 @@ export default function Pagination({ page, hasNext, hasPrev, onPageChange }: Pag
             <button
                 onClick={() => onPageChange(page - 1)}
                 disabled={!hasPrev || page <= 1}
-                className="px-4 py-2 bg-blue-800 rounded cursor-pointer disabled:opacity-20 disabled:cursor-auto"
+                className="cursor-pointer rounded-lg bg-blue-950 p-2 hover:bg-blue-900 border border-sky-800 disabled:opacity-20 disabled:cursor-auto"
             >
                 Previous
             </button>
@@ -21,7 +21,7 @@ export default function Pagination({ page, hasNext, hasPrev, onPageChange }: Pag
             <button
                 onClick={() => onPageChange(page + 1)}
                 disabled={!hasNext}
-                className="px-4 py-2 bg-blue-800 rounded cursor-pointer disabled:opacity-20 disabled:cursor-auto"
+                className="cursor-pointer rounded-lg bg-blue-950 p-2 hover:bg-blue-900 border border-sky-800 disabled:opacity-20 disabled:cursor-auto"
             >
                 Next
             </button>
