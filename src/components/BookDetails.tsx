@@ -25,7 +25,7 @@ export default function BookDetails() {
                         <h2 className="text-2xl text-amber-200 mb-2">Authors</h2>
                         <ul>
                             {data.authors.map((author: Person) => {
-                                return <li className="w-fit text-xl rounded-lg">{author.name}</li>
+                                return <li className="w-fit text-xl rounded-lg">{`${author.name} (${author.birth_year} - ${author.death_year})`}</li>
                             })}
                         </ul>
                     </div>
