@@ -14,14 +14,11 @@ export default function BookDetails() {
     
     return (
         <div className="flex flex-col gap-4 w-full min-h-screen bg-slate-900 text-white items-center">
-            <h1 className="text-4xl text-blue-300 p-4 w-full text-center bg-slate-800">{data.title}</h1>
+            <h1 className="text-4xl text-amber-500 p-4 w-full text-center bg-gray-950">{data.title}</h1>
             <div className="grid grid-cols-1 sm:grid-cols-2 items-start w-full max-w-[1200px]">
                 
-                
-                
                 <img className="w-3/4 max-w-xs mx-auto object-contain p-4" src={data.formats["image/jpeg"]} alt={`${data.title} cover`} />
-                
-                   
+
                 <div className="flex flex-col gap-4 col-span-2 sm:col-span-1 p-4">
                     
                     <div>
