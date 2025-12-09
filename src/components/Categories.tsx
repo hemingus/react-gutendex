@@ -11,9 +11,9 @@ export default function Categories() {
                             className={`border-2 border-[rgba(50,50,50,0.3)] text-gray-200 relative 
                             flex justify-center items-center w-[250px] h-[140px] bg-cover bg-center 
                             p-4 cursor-pointer rounded-xl  transition-all duration-200
-                            hover:scale-105 hover:text-white hover:shadow-[3px_3px_10px_1px_black]`}
+                            hover:scale-105 hover:text-white hover:shadow-[3px_3px_10px_1px_black] text-2xl hover:text-3xl`}
                             >
-                                <span className="z-10 rounded-lg p-2 font-bold text-xl">{category}</span>
+                                <span className="z-10 rounded-lg p-2 font-bold">{category}</span>
                             </li>
                         </Link>
             })}
