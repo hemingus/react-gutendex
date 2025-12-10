@@ -1,23 +1,37 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useBookById } from "../hooks/useBookQuery";
 import type { Person } from "../types/book";
+import { useEffect } from "react";
+import Loading from "./ui/Loading";
 
 export default function BookDetails() {
-    
-
+    const navigate = useNavigate();
     const { id } = useParams();
+
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     if (!id) return <div>Invalid book ID.</div>
 
     const { data, isLoading, isError, error } = useBookById(id);
-    if (isLoading) return <p>Loading...</p>
+    if (isLoading) return <Loading />
     if (isError) return <p>{error.toString()}</p>
     
     return (
         <div className="flex flex-col w-full min-h-screen bg-slate-950 text-white items-center">
-            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 p-4 w-full text-center bg-linear-to-b from-slate-800 to-transparent border-b border-[rgba(0,100,200,0.3)]">{data.title}</h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-blue-500 p-4 w-full text-center bg-linear-to-b from-slate-800 to-transparent border-b border-[rgba(0,100,200,0.3)]">
+                {data.title}
+            </h1>
+
             <div className="bg-slate-900 grid grid-cols-1 sm:grid-cols-2 items-start w-full max-w-[1200px] pb-8">
-                
-                <img className="w-3/4 max-w-xs m-auto object-contain p-4" src={data.formats["image/jpeg"]} alt={`${data.title} cover`} />
+                 <div className="flex flex-col items-center">
+                     <button className="flex gap-2 items-center justify-center text-2xl text-black font-bold cursor-pointer rounded-lg bg-indigo-400 p-2 hover:bg-indigo-500 border-2 border-black m-2" onClick={() => navigate(-1)}>
+                        <img className="w-8" src="/assets/back-arrow.png" alt="back arrow icon" />
+                        Back
+                    </button>
+                    <img className="w-3/4 max-w-xs m-auto object-contain p-4" src={data.formats["image/jpeg"]} alt={`${data.title} cover`} />
+                 </div>
 
                 <div className="flex flex-col gap-4 col-span-2 sm:col-span-1 p-4">
                     
