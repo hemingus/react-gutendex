@@ -6,6 +6,8 @@ const useBooks = (params: BookQueryParams) => {
     return useQuery({
         queryKey: ["books", params],
         queryFn: () => fetchBooks(params),
+        staleTime: 1000 * 60 * 5, // <-- prevents refetch on back navigation
+        gcTime: 1000 * 60 * 30,   // optional: keep cached longer
     });
 }
 
