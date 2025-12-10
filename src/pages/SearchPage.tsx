@@ -2,14 +2,16 @@ import BookList from "../components/BookList";
 import FilterSection from "../components/FilterSection";
 import Loading from "../components/ui/Loading";
 import { useBooks } from "../hooks/useBookQuery";
-import { useSearchParams, useNavigate } from "react-router-dom";
+import { useSearchParams, useNavigate, useLocation } from "react-router-dom";
 import type { BookFilters } from "../types/book";
 import Pagination from "../components/Pagination";
+import { useEffect } from "react";
 
 
 export default function SearchPage() {
     const [searchParams] = useSearchParams();
     const navigate = useNavigate();
+    const location = useLocation();
     const page = Number(searchParams.get("page")) || 1;
     const filters = { 
         topic: searchParams.get("topic") || "",
@@ -17,6 +19,12 @@ export default function SearchPage() {
     };
 
     const { data, isFetching } = useBooks({...filters, page});
+
+    useEffect(() => {
+        if (location.state?.scrollY) {
+            window.scrollTo(0, location.state.scrollY);
+        }
+    }, []);
 
     const handleApplyFilters = (newFilters: BookFilters) => {
         const params = new URLSearchParams();
