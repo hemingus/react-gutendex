@@ -21,7 +21,9 @@ export default function BookCard({ book, isFavorite, addFavorite, removeFavorite
             </ul>
             {/* <p>{`By ${book.authors[0]?.name || "Unknown Author"}`}</p> */}
             <p>{`Downloads: ${book.download_count}`}</p>
-            <Link to={`/book/${book.id}`}><button className="cursor-pointer rounded-lg bg-blue-950 p-2 hover:bg-blue-900 border border-sky-800">Details</button></Link>
+            <Link to={`/book/${book.id}`} state={{ fromScroll: window.scrollY }}>
+                <button className="cursor-pointer rounded-lg bg-blue-950 p-2 hover:bg-blue-900 border border-sky-800">Details</button>
+            </Link>
             {isFavorite(book.id) ? 
                 <button className="cursor-pointer rounded-lg bg-gray-800 p-2 hover:bg-gray-900 border border-gray-600" 
                     onClick={() => removeFavorite(book.id)}>
