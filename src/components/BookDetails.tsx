@@ -3,6 +3,7 @@ import { useBookById } from "../hooks/useBookQuery";
 import type { Person } from "../types/book";
 import { useEffect } from "react";
 import Loading from "./ui/Loading";
+import ErrorScreen from "./ui/ErrorScreen";
 
 export default function BookDetails() {
     const navigate = useNavigate();
@@ -12,11 +13,17 @@ export default function BookDetails() {
         window.scrollTo(0, 0);
     }, []);
 
-    if (!id) return <div>Invalid book ID.</div>
+    if (!id) return <ErrorScreen message="Invalid book ID." />
 
     const { data, isLoading, isError, error } = useBookById(id);
-    if (isLoading) return <Loading />
-    if (isError) return <p>{error.toString()}</p>
+    if (isLoading) return (
+        <div className="flex items-center justify-center bg-slate-900 min-h-screen">
+            <Loading />
+        </div>)
+    if (isError) {
+        console.log(error);
+        return <ErrorScreen message="Something went wrong..." />
+    }
     
     return (
         <div className="flex flex-col w-full min-h-screen bg-slate-950 text-white items-center">
